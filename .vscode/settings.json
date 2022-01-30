@@ -7,7 +7,7 @@
       "askForPassword": true,
       "driver": "PostgreSQL",
       "name": "localhost",
-      "database": "projectdb",
+      "database": "demo",
       "username": "pyro"
     }
   ]
