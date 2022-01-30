@@ -2,6 +2,7 @@
 
 require 'pg'
 require 'faker'
+require 'date'
 
 PROJECTS = 1000
 EMPLOYEES = 100
@@ -21,7 +22,7 @@ PROJECTS.times do
           )
             values (
               '#{DB.escape(Faker::Commerce.unique.product_name)}',
-              date '#{Faker::Date.forward days: 100}',
+              date '#{Faker::Date.between from: Date.today - 100, to: Date.today + 100}',
               #{rand(100)}
             );"
 end
@@ -51,8 +52,8 @@ ASSIGNMENTS.times do
               #{rand(1..EMPLOYEES)},
               date '#{Faker::Date.backward days: 100}',
               #{rand(10)},
-              date '#{Faker::Date.forward days: 100}',
-              date '#{Faker::Date.forward days: 100}'
+              date '#{expected = Faker::Date.between from: Date.today - 100, to: Date.today + 100}',
+              #{expected <= Date.today ? "date '#{Faker::Date.backward days: 100}'" : 'null'}
             );"
 end
 
@@ -77,7 +78,7 @@ CONTRACTS.times do
           )
             values (
               '#{DB.escape Faker::Commerce.product_name}',
-              date '#{Faker::Date.forward days: 100}',
+              date '#{Faker::Date.between from: Date.today - 100, to: Date.today + 100}',
               #{Faker::Commerce.price},
               #{rand(1..CONTRACTORS)},
               #{rand(1..PROJECTS)}
