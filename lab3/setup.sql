@@ -10,7 +10,7 @@ create table projects (
   project_name varchar not null,
   deadline date not null,
   labour int not null check (labour >= 0),
-  contracts json not null
+  contracts text not null
 );
 
 create table employees (
@@ -29,13 +29,7 @@ create table assignments (
   issue_date date not null,
   labour int not null check (labour >= 0),
   expected_execution_date date,
-  actual_execution_date date,
-  constraint fk_project
-    foreign key (project_id)
-      references projects(project_id) on delete cascade,
-  constraint fk_employee
-    foreign key (employee_id)
-      references employees(employee_id)
+  actual_execution_date date
 );
 
 create table contractors (
@@ -53,11 +47,5 @@ create table contracts (
   execution_date date not null,
   cost float not null check (cost >= 0),
   contractor_id int not null,
-  project_id int not null,
-  constraint fk_project
-    foreign key (project_id)
-      references projects(project_id) on delete cascade,
-  constraint fk_contractor
-    foreign key (contractor_id)
-      references contractors(contractor_id)
+  project_id int not null
 );
