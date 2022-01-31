@@ -9,14 +9,16 @@ create table projects (
     generated always as identity,
   project_name varchar not null,
   deadline date not null,
-  labour int not null check (labour >= 0)
+  labour int not null check (labour >= 0),
+  contracts json not null
 );
 
 create table employees (
   employee_id int primary key not null
     generated always as identity,
   employee_name varchar not null,
-  position varchar not null
+  position varchar not null,
+  overdue_assignments int not null
 );
 
 create table assignments (
@@ -40,7 +42,8 @@ create table contractors (
   contractor_id int primary key not null
     generated always as identity,
   contractor_name varchar not null,
-  contact_info varchar not null
+  contact_info varchar not null,
+  projects int[]
 );
 
 create table contracts (
