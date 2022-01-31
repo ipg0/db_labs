@@ -10,7 +10,7 @@ ASSIGNMENTS = 2000
 CONTRACTORS = 100
 CONTRACTS = 2000
 
-DB = PG.connect dbname: 'projectdb'
+DB = PG.connect dbname: 'projectdb_app'
 
 DB.exec File.read('./setup.sql')
 

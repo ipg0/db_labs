@@ -11,7 +11,7 @@ ASSIGNMENTS = 1_000_000
 CONTRACTORS = 10_000
 CONTRACTS = 20_000
 
-DB = PG.connect dbname: 'projectdb'
+DB = PG.connect dbname: 'projectdb_analytic'
 
 project_contracts = [[]] * PROJECTS
 employee_overdue_assignments = [0] * EMPLOYEES
